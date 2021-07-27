@@ -11,7 +11,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('lemon-mart app is running!');
+    expect(await page.getTitleText()).toEqual('LemonMart');
   });
 
   afterEach(async () => {
