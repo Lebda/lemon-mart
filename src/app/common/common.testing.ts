@@ -14,14 +14,14 @@ const FAKE_SVGS = {
 };
 
 export class MediaObserverFake {
-  isActive(query: string): boolean {
+  public isActive(query: string): boolean {
     return false;
   }
 
-  asObservable(): Observable<MediaChange> {
+  public asObservable(): Observable<MediaChange> {
     return of({} as MediaChange);
   }
-  subscribe(
+  public subscribe(
     next?: (value: MediaChange) => void,
     error?: (error: any) => void,
     complete?: () => void
@@ -32,13 +32,13 @@ export class MediaObserverFake {
 
 export class MatIconRegistryFake {
   // tslint:disable-next-line: variable-name
-  _document = document;
-  addSvgIcon(iconName: string, url: SafeResourceUrl): this {
+  public _document = document;
+  public addSvgIcon(iconName: string, url: SafeResourceUrl): this {
     // this.addSvgIcon('lemon', 'lemon.svg')
     return this;
   }
 
-  getNamedSvgIcon(name: string, namespace: string = ''): Observable<SVGElement> {
+  public getNamedSvgIcon(name: string, namespace: string = ''): Observable<SVGElement> {
     return of(this._svgElementFromString(FAKE_SVGS.lemon));
   }
 
@@ -54,10 +54,13 @@ export class MatIconRegistryFake {
 }
 
 export class DomSanitizerFake {
-  bypassSecurityTrustResourceUrl(url: string): SafeResourceUrl {
+  public bypassSecurityTrustResourceUrl(url: string): SafeResourceUrl {
     return {} as SafeResourceUrl;
   }
-  sanitize(context: SecurityContext, value: SafeValue | string | null): string | null {
+  public sanitize(
+    context: SecurityContext,
+    value: SafeValue | string | null
+  ): string | null {
     return value?.toString() || null;
   }
 }

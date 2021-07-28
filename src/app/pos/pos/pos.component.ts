@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pos.component.css'],
 })
 export class PosComponent implements OnInit {
-  constructor() {}
+  public constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

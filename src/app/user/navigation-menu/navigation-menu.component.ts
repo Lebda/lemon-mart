@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation-menu.component.css'],
 })
 export class NavigationMenuComponent implements OnInit {
-  constructor() {}
+  public constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

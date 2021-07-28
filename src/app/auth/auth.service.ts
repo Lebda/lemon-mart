@@ -30,10 +30,10 @@ export interface IAuthService {
 
 @Injectable()
 export abstract class AuthService implements IAuthService {
-  readonly authStatus$ = new BehaviorSubject<IAuthStatus>(defaultAuthStatus);
-  readonly currentUser$ = new BehaviorSubject<IUser>(new User());
+  public readonly authStatus$ = new BehaviorSubject<IAuthStatus>(defaultAuthStatus);
+  public readonly currentUser$ = new BehaviorSubject<IUser>(new User());
 
-  constructor() {}
+  public constructor() {}
 
   public login(email: string, password: string): Observable<void> {
     throw new Error('Method not implemented.');

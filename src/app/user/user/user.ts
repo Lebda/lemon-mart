@@ -40,7 +40,7 @@ export interface IUser {
 }
 
 export class User implements IUser {
-  constructor(
+  public constructor(
     // tslint:disable-next-line: variable-name
     public _id = '',
     public email = '',

@@ -80,6 +80,12 @@
         "check-typecast"
       ]
     },
+    "member-access": [
+      true,
+      "check-accessor",
+      "check-constructor",
+      "check-parameter-property"
+    ],
     "component-class-suffix": true,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
