@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
-import { filter, tap } from 'rxjs/operators';
+import { Observable, combineLatest } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 import { AuthService } from '../auth/auth.service';
+import { BaseComponent } from '../common/base.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends BaseComponent implements OnInit {
+  public displayLogin = true;
+  public isAuthenticated$: Observable<boolean>;
+
   public constructor(
     private readonly authService: AuthService,
     private readonly router: Router
-  ) {}
+  ) {
+    super();
+    this.isAuthenticated$ = this.authService.authStatus$.pipe(
+      map((status) => status.isAuthenticated)
+    );
+  }
 
   public ngOnInit(): void {}
 

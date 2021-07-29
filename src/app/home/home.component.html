@@ -1,9 +1,22 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <span class="mat-display-2">Hello, Limoncu!</span>
-  <button mat-raised-button color="primary" routerLink="/manager">
-    Login as Manager
-  </button>
-  <button mat-raised-button color="primary" (click)="login()">
-    Login as Manager FAKE
-  </button>
+<!-- <div *ngIf="displayLogin">
+  <app-login></app-login>
 </div>
+<div *ngIf="!displayLogin">
+  <span class="mat-display-3">You get a lemon, you get a
+    lemon, you get a lemon...</span>
+</div> -->
+
+<div *ngIf="(isAuthenticated$ | async); else doLogin">
+  <div class="mat-display-2">
+    This is LemonMart! The place where
+  </div>
+  <div class="mat-display-2">
+    You get a lemon, you get a lemon, you get a lemon...
+  </div>
+  <div class="mat-display-2">
+    Everybody gets a lemon.
+  </div>
+</div>
+<ng-template #doLogin>
+  <app-login></app-login>
+</ng-template>
