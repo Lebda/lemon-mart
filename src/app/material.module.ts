@@ -5,9 +5,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
 
 const modules = [
   MatButtonModule,
@@ -19,6 +21,8 @@ const modules = [
   MatInputModule,
   MatSnackBarModule,
   MatDialogModule,
+  MatSidenavModule,
+  MatListModule,
 ];
 
 @NgModule({

@@ -56,8 +56,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
           filter(([authStatus, user]) => authStatus.isAuthenticated && user?._id !== ''),
           tap(([authStatus, user]) => {
             this.router.navigate([this.redirectUrl || '/manager']);
-            // this.uiService.showToast(`Welcome ${user.fullName}! Role: ${user.role}`);
-            this.uiService.showDialog(`Welcome ${user.fullName}!`, `Role: ${user.role}`);
+            this.uiService.showToast(`Welcome ${user.fullName}! Role: ${user.role}`);
+            // this.uiService.showDialog(`Welcome ${user.fullName}!`, `Role: ${user.role}`);
           })
         )
         .subscribe()
