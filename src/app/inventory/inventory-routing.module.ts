@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardData } from '../auth/auth-guard.data';
 import { AuthGuard } from '../auth/auth-guard.service';
 import { Role } from '../auth/auth.enum';
 
@@ -8,6 +9,8 @@ import { InventoryHomeComponent } from './inventory-home/inventory-home.componen
 import { InventoryComponent } from './inventory/inventory.component';
 import { ProductsComponent } from './products/products.component';
 import { StockEntryComponent } from './stock-entry/stock-entry.component';
+
+const authData = new AuthGuardData([Role.Clerk, Role.Manager]);
 
 const routes: Routes = [
   {
@@ -19,33 +22,25 @@ const routes: Routes = [
         path: 'home',
         component: InventoryHomeComponent,
         canActivate: [AuthGuard],
-        data: {
-          expectedRole: Role.Cashier,
-        },
+        data: authData,
       },
       {
         path: 'categories',
         component: CategoriesComponent,
         canActivate: [AuthGuard],
-        data: {
-          expectedRole: Role.Cashier,
-        },
+        data: authData,
       },
       {
         path: 'products',
         component: ProductsComponent,
         canActivate: [AuthGuard],
-        data: {
-          expectedRole: Role.Cashier,
-        },
+        data: authData,
       },
       {
         path: 'stock-entry',
         component: StockEntryComponent,
         canActivate: [AuthGuard],
-        data: {
-          expectedRole: Role.Cashier,
-        },
+        data: authData,
       },
     ],
   },

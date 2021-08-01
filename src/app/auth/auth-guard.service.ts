@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import { UiService } from '../common/ui.service';
+import { IAuthGuardData } from './auth-guard.data';
 import { Role } from './auth.enum';
 import { AuthService } from './auth.service';
 
@@ -63,10 +64,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   private checkRoleMatch(role: Role, route?: ActivatedRouteSnapshot): boolean {
-    if (!route?.data?.expectedRole) {
+    const authData = route?.data as IAuthGuardData;
+    if (!authData?.expectedRoles) {
       return true;
     }
-    return role === route.data.expectedRole;
+    return authData.expectedRoles.findIndex((item) => item === role) !== -1;
   }
 
   private showAlert(isAuth: boolean, roleMatch: boolean): void {
