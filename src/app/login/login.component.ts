@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { catchError, filter, tap } from 'rxjs/operators';
 
+import { Role } from '../auth/auth.enum';
 import { AuthService } from '../auth/auth.service';
 import { BaseComponent } from '../common/base.component';
 import { UiService } from '../common/ui.service';
@@ -55,12 +56,27 @@ export class LoginComponent extends BaseComponent implements OnInit {
         .pipe(
           filter(([authStatus, user]) => authStatus.isAuthenticated && user?._id !== ''),
           tap(([authStatus, user]) => {
-            this.router.navigate([this.redirectUrl || '/manager']);
+            this.router.navigate([
+              this.redirectUrl || this.homeRoutePerRole(user.role as Role),
+            ]);
             this.uiService.showToast(`Welcome ${user.fullName}! Role: ${user.role}`);
             // this.uiService.showDialog(`Welcome ${user.fullName}!`, `Role: ${user.role}`);
           })
         )
         .subscribe()
     );
+  }
+
+  private homeRoutePerRole(role: Role): string {
+    switch (role) {
+      case Role.Cashier:
+        return '/pos';
+      case Role.Clerk:
+        return '/inventory';
+      case Role.Manager:
+        return '/manager';
+      default:
+        return '/user/profile';
+    }
   }
 }

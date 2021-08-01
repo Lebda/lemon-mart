@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/auth-guard.service';
+import { Role } from '../auth/auth.enum';
 
 import { CategoriesComponent } from './categories/categories.component';
 import { InventoryHomeComponent } from './inventory-home/inventory-home.component';
@@ -13,10 +15,38 @@ const routes: Routes = [
     component: InventoryComponent,
     children: [
       { path: '', redirectTo: '/inventory/home', pathMatch: 'full' },
-      { path: 'home', component: InventoryHomeComponent },
-      { path: 'categories', component: CategoriesComponent },
-      { path: 'products', component: ProductsComponent },
-      { path: 'stock-entry', component: StockEntryComponent },
+      {
+        path: 'home',
+        component: InventoryHomeComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRole: Role.Cashier,
+        },
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRole: Role.Cashier,
+        },
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRole: Role.Cashier,
+        },
+      },
+      {
+        path: 'stock-entry',
+        component: StockEntryComponent,
+        canActivate: [AuthGuard],
+        data: {
+          expectedRole: Role.Cashier,
+        },
+      },
     ],
   },
 ];
