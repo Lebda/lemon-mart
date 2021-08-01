@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthGuardData } from '../auth/auth-guard.data';
 import { AuthGuard } from '../auth/auth-guard.service';
 import { Role } from '../auth/auth.enum';
-
 import { CategoriesComponent } from './categories/categories.component';
 import { InventoryHomeComponent } from './inventory-home/inventory-home.component';
 import { InventoryComponent } from './inventory/inventory.component';

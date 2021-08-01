@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardData } from '../auth/auth-guard.data';
 
+import { AuthGuardData } from '../auth/auth-guard.data';
 import { AuthGuard } from '../auth/auth-guard.service';
 import { Role } from '../auth/auth.enum';
 import { ManagerHomeComponent } from './manager-home/manager-home.component';
