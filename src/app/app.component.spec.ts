@@ -1,12 +1,20 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MediaObserver } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
+import {
+  MediaObserverFake,
+  commonTestingModules,
+  commonTestingProviders,
+} from './common/common.testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: commonTestingModules,
+      providers: commonTestingProviders.concat([
+        { provide: MediaObserver, useClass: MediaObserverFake },
+      ]),
       declarations: [AppComponent],
     }).compileComponents();
   });
@@ -15,6 +23,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+    fixture.destroy();
   });
 
   // it(`should have as title 'lemon-mart'`, () => {
